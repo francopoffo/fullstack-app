@@ -1,8 +1,8 @@
-##Sobre
+## Sobre
 
 Minha primeira API Rest.
 
-##Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Java
 - Spring Boot
