@@ -22,10 +22,12 @@ public class User {
 
     private String name;
     private String email;
+    private String telephone;
 
 
     public User(RegisteredUserData data){
         this.name = data.name();
         this.email = data.email();
+        this.telephone = data.telephone();
     }
 }

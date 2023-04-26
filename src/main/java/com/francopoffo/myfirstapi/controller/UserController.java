@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping
     @Transactional
-    public void register(@RequestBody RegisteredUserData data){
+    public void register(@RequestBody @Valid RegisteredUserData data){
         repository.save(new User(data));
 
     }
