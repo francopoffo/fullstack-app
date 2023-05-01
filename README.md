@@ -1,7 +1,7 @@
 ## Sobre
 
 Minha primeira API Rest.
-Possui funcionalidades CRUD para usuários com informações de nome, email e telefone.
+Possui funcionalidades CRUD para cadastro de usuários com informações de nome, email, telefone e com id gerado automaticamente.
 
 ## Tecnologias utilizadas
 
@@ -12,6 +12,7 @@ Possui funcionalidades CRUD para usuários com informações de nome, email e te
 - MySQL
 - Flyway
 - Lombok
+- Insomnia
 
 
 
