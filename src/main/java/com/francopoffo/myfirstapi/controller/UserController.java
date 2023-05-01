@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class UserController {
 
     @GetMapping
     public Page<UserListData> list(Pageable pagination){
-        return repository.findAll(pagination).map(UserListData::new);
+        return repository.findAllByActiveTrue(pagination).map(UserListData::new);
     }
 
 
@@ -36,5 +37,12 @@ public class UserController {
     public void update(@RequestBody @Valid UpdateUserData data){
         var medico = repository.getReferenceById(data.id());
         medico.updateInfo(data);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable BigInteger id){
+        var medico = repository.getReferenceById(id);
+        medico.deleteUser();
     }
 }

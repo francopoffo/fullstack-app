@@ -23,12 +23,14 @@ public class User {
     private String name;
     private String email;
     private String telephone;
+    private Boolean active;
 
 
     public User(RegisteredUserData data){
         this.name = data.name();
         this.email = data.email();
         this.telephone = data.telephone();
+        this.active = true;
     }
 
     public void updateInfo(UpdateUserData data) {
@@ -41,5 +43,12 @@ public class User {
         if(data.telephone() != null){
             this.telephone = data.telephone();
         }
+        if(data.active() != null){
+            this.active = data.active();
+        }
+    }
+
+    public void deleteUser() {
+        this.active = false;
     }
 }
