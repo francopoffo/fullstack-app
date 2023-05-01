@@ -30,4 +30,16 @@ public class User {
         this.email = data.email();
         this.telephone = data.telephone();
     }
+
+    public void updateInfo(UpdateUserData data) {
+        if(data.name() != null){
+            this.name = data.name();
+        }
+        if(data.email() != null){
+            this.email = data.email();
+        }
+        if(data.telephone() != null){
+            this.telephone = data.telephone();
+        }
+    }
 }

@@ -1,10 +1,7 @@
 package com.francopoffo.myfirstapi.controller;
 
 
-import com.francopoffo.myfirstapi.users.RegisteredUserData;
-import com.francopoffo.myfirstapi.users.User;
-import com.francopoffo.myfirstapi.users.UserListData;
-import com.francopoffo.myfirstapi.users.UserRepository;
+import com.francopoffo.myfirstapi.users.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,5 +28,13 @@ public class UserController {
     @GetMapping
     public Page<UserListData> list(Pageable pagination){
         return repository.findAll(pagination).map(UserListData::new);
+    }
+
+
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid UpdateUserData data){
+        var medico = repository.getReferenceById(data.id());
+        medico.updateInfo(data);
     }
 }
