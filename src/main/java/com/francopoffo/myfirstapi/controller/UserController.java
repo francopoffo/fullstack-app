@@ -1,7 +1,7 @@
 package com.francopoffo.myfirstapi.controller;
 
 
-import com.francopoffo.myfirstapi.users.*;
+import com.francopoffo.myfirstapi.domain.users.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

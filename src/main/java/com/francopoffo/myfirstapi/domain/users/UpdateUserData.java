@@ -1,4 +1,4 @@
-package com.francopoffo.myfirstapi.users;
+package com.francopoffo.myfirstapi.domain.users;
 
 import jakarta.validation.constraints.NotNull;
 

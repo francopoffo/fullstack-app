@@ -1,4 +1,4 @@
-package com.francopoffo.myfirstapi.users;
+package com.francopoffo.myfirstapi.domain.users;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
