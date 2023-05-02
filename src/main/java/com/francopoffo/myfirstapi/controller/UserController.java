@@ -6,11 +6,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigInteger;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("users")
@@ -21,28 +23,46 @@ public class UserController {
 
     @PostMapping
     @Transactional
-    public void register(@RequestBody @Valid RegisteredUserData data){
-        repository.save(new User(data));
+    public ResponseEntity register(@RequestBody @Valid RegisteredUserData data, UriComponentsBuilder uriBuilder){
+        var user = new User(data);
 
+        repository.save(user);
+
+        var uri = uriBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(new DetailedUpdatedUserData(user));
     }
 
     @GetMapping
-    public Page<UserListData> list(Pageable pagination){
-        return repository.findAllByActiveTrue(pagination).map(UserListData::new);
+    public ResponseEntity<Page<UserListData>> list(Pageable pagination){
+        var page =  repository.findAllByActiveTrue(pagination).map(UserListData::new);
+
+        return ResponseEntity.ok(page);
     }
 
 
     @PutMapping
     @Transactional
-    public void update(@RequestBody @Valid UpdateUserData data){
-        var medico = repository.getReferenceById(data.id());
-        medico.updateInfo(data);
+    public ResponseEntity update(@RequestBody @Valid UpdateUserData data){
+        var user = repository.getReferenceById(data.id());
+        user.updateInfo(data);
+
+        return ResponseEntity.ok(new DetailedUpdatedUserData(user));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void delete(@PathVariable BigInteger id){
-        var medico = repository.getReferenceById(id);
-        medico.deleteUser();
+    public ResponseEntity delete(@PathVariable BigInteger id){
+        var user = repository.getReferenceById(id);
+        user.deleteUser();
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity detail(@PathVariable BigInteger id){
+        var user = repository.getReferenceById(id);
+
+        return ResponseEntity.ok(new DetailedUpdatedUserData(user));
     }
 }
