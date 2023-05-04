@@ -1,4 +1,4 @@
-package com.francopoffo.myfirstapi.infra;
+package com.francopoffo.myfirstapi.infra.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
