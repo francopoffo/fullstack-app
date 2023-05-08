@@ -1,6 +1,9 @@
 package com.francopoffo.myfirstapi.controller;
 
 import com.francopoffo.myfirstapi.domain.loginUsers.AuthData;
+import com.francopoffo.myfirstapi.domain.loginUsers.loginUser;
+import com.francopoffo.myfirstapi.infra.security.JWTTokenData;
+import com.francopoffo.myfirstapi.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +21,16 @@ public class AuthController {
     @Autowired
     private AuthenticationManager manager;
 
-    @PostMapping
-    public ResponseEntity logginIn(@RequestBody @Valid AuthData data){
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var authentication = manager.authenticate(token);
+    @Autowired
+    private TokenService tokenService;
 
-        return ResponseEntity.ok().build();
+    @PostMapping
+    public ResponseEntity loggingIn(@RequestBody @Valid AuthData data){
+        var authToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        var authentication = manager.authenticate(authToken);
+
+        var jwtToken = tokenService.generateToken((loginUser) authentication.getPrincipal());
+
+        return ResponseEntity.ok(new JWTTokenData(jwtToken));
     }
 }
