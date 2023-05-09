@@ -1,4 +1,4 @@
-package com.francopoffo.myfirstapi.domain.users;
+package com.francopoffo.myfirstapi.domain.users.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

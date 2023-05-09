@@ -2,6 +2,10 @@ package com.francopoffo.myfirstapi.controller;
 
 
 import com.francopoffo.myfirstapi.domain.users.*;
+import com.francopoffo.myfirstapi.domain.users.dto.DetailedUpdatedUserData;
+import com.francopoffo.myfirstapi.domain.users.dto.RegisteredUserData;
+import com.francopoffo.myfirstapi.domain.users.dto.UpdateUserData;
+import com.francopoffo.myfirstapi.domain.users.dto.UserListData;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +19,7 @@ import java.math.BigInteger;
 
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired

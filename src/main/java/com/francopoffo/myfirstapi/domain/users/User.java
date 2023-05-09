@@ -1,6 +1,8 @@
 package com.francopoffo.myfirstapi.domain.users;
 
 
+import com.francopoffo.myfirstapi.domain.users.dto.RegisteredUserData;
+import com.francopoffo.myfirstapi.domain.users.dto.UpdateUserData;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

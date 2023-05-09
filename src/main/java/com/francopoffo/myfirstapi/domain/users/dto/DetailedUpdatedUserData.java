@@ -1,4 +1,6 @@
-package com.francopoffo.myfirstapi.domain.users;
+package com.francopoffo.myfirstapi.domain.users.dto;
+
+import com.francopoffo.myfirstapi.domain.users.User;
 
 import java.math.BigInteger;
 

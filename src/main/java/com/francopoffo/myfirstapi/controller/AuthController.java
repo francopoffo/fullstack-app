@@ -1,6 +1,6 @@
 package com.francopoffo.myfirstapi.controller;
 
-import com.francopoffo.myfirstapi.domain.loginUsers.AuthData;
+import com.francopoffo.myfirstapi.domain.loginUsers.dto.AuthData;
 import com.francopoffo.myfirstapi.domain.loginUsers.loginUser;
 import com.francopoffo.myfirstapi.infra.security.JWTTokenData;
 import com.francopoffo.myfirstapi.infra.security.TokenService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping
 public class AuthController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AuthController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity loggingIn(@RequestBody @Valid AuthData data){
         var authToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var authentication = manager.authenticate(authToken);
@@ -33,4 +33,6 @@ public class AuthController {
 
         return ResponseEntity.ok(new JWTTokenData(jwtToken));
     }
+
+
 }
