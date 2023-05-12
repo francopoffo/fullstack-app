@@ -27,7 +27,7 @@ public class Meeting {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private LocalDateTime date;
+    private LocalDateTime dateTime;
 
 
 

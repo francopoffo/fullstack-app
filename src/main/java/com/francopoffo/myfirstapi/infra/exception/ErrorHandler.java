@@ -1,5 +1,6 @@
 package com.francopoffo.myfirstapi.infra.exception;
 
+import com.francopoffo.myfirstapi.domain.meetings.validations.MyValidationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -21,6 +22,13 @@ public class ErrorHandler {
 
         return ResponseEntity.badRequest().body(errors.stream().map(ErrorValidationData::new).toList());
     }
+
+    @ExceptionHandler(MyValidationException.class)
+    public ResponseEntity BusinessRulesErrorHandler(MyValidationException ex){
+
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
 
     private record ErrorValidationData(String field, String message){
         public ErrorValidationData(FieldError error){

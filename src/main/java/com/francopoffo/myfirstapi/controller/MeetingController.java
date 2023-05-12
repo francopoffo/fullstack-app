@@ -22,8 +22,8 @@ public class MeetingController {
     @PostMapping
     @Transactional
     public ResponseEntity scheduleMeeting(@RequestBody @Valid ScheduledMeetingData data){
-        meetingService.schedule(data);
-        return ResponseEntity.ok().build();
+        var dto = meetingService.schedule(data);
+        return ResponseEntity.ok(dto);
     }
 
 }
