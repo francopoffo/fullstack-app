@@ -3,6 +3,7 @@ package com.francopoffo.myfirstapi.controller;
 import com.francopoffo.myfirstapi.domain.meetings.MeetingService;
 import com.francopoffo.myfirstapi.domain.meetings.dto.ScheduledMeetingData;
 import com.francopoffo.myfirstapi.domain.meetings.dto.ScheduledMeetingDetailedData;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/meetings")
+@SecurityRequirement(name = "bearer-key")
 public class MeetingController {
 
     @Autowired
